@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+	</head>
+	<style>
+		* {
+			border: none;
+			outline: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		:root {
+			--accent-main: #97ae04;
+			--accent-lighter: #c0d336;
+
+			--text-white: white;
+			--text-black: black;
+
+			--shadow-main: rgba(0, 0, 0, 0.150);
+		}
+
+		h1 {
+			font-size: 1.8rem;
+		}
+
+		p, a {
+			font-size: 1.2rem;
+		}
+
+		.colored {
+			color: var(--accent-main);
+		}
+
+		.selectable {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+		.small {
+			font-size: 0.9rem;
+		}
+
+		.arrow {
+			font-size: 1.6rem;
+			font-weight: bold;
+
+			padding-left: 7px;
+			padding-right: 7px;
+			padding-top: 2px;
+			padding-bottom: 2px;
+
+			margin: 5px;
+		}
+
+		.disabled {
+			opacity: 0.7;
+			pointer-events: none;
+		}
+
+		button {
+			font-size: 1.1rem;
+			background-color: var(--accent-main);
+			color: var(--text-white);
+
+			border-radius: 10px;
+			box-shadow: 0 0 15px var(--shadow-main);
+
+			cursor: pointer;
+		}
+	</style>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

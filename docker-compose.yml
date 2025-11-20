@@ -1,0 +1,16 @@
+services:
+  server:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8008
+    network_mode: host
+
+  mobile:
+    build:
+      context: frontend/mobile
+      dockerfile: Dockerfile
+      
+    
+    network_mode: host

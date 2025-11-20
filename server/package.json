@@ -1,0 +1,30 @@
+{
+  "name": "kayttis",
+  "version": "1.0.0",
+  "description": "Minimal TypeScript project (src -> bin)",
+  "main": "bin/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "node ./bin/index.js",
+    "prod": "tsc && node ./bin/index.js",
+    "dev": "nodemon ./src/index.ts"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/node": "^20.0.0",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@tuukezu/joi-express": "github:TuuKeZu/joi-express",
+    "@types/express": "^5.0.5",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "joi": "^17.13.3",
+    "uuid": "^11.1.0"
+  }
+}
