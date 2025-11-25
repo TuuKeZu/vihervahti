@@ -1,5 +1,3 @@
-import { resolve } from "$app/paths";
-
 export const API_URL = 'http://localhost:8008/api';
 const AUTH = 'ronja';
 

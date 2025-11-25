@@ -11,3 +11,9 @@ export interface Sensor {
     paired: boolean;
     owner: string;
 }
+
+export enum PotSize {
+    Small = 'SMALL',
+    Medium = 'MEDIUM',
+    Big = 'BIG'
+}
