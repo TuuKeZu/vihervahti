@@ -7,6 +7,7 @@ export enum StateError {
     NotAllowed,
     AlreadyPaired,
     InvalidCode,
+    FailedTofetchPlant,
     Pass
 }
 
@@ -17,7 +18,8 @@ export const ERROR_MAP: Record<StateError, [number, string]> = {
     [StateError.Pass]: [500, '!unreachable'],
     [StateError.NotAllowed]: [401, 'Not allowed'],
     [StateError.AlreadyPaired]: [401, 'Already paired'],
-    [StateError.InvalidCode]: [401, 'Invalid code']
+    [StateError.InvalidCode]: [401, 'Invalid code'],
+    [StateError.FailedTofetchPlant]: [500, 'Failed to fetch plant']
 }
 
 export class Result<T, E> {

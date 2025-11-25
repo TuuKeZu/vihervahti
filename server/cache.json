@@ -1,0 +1,144 @@
+{
+  "1023": {
+    "finnish": "Jättipeikonlehti",
+    "latin": "Monstera deliciosa",
+    "wateringIntervalDays": 7,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.4 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 8 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 16, "max": 28 },
+    "xWateringPhLevel": { "min": 5.5, "max": 7.0 }
+  },
+
+  "2841": {
+    "finnish": "Kultaköynnös",
+    "latin": "Epipremnum aureum",
+    "wateringIntervalDays": 5,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.25 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 6 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 30 },
+    "xWateringPhLevel": { "min": 6.1, "max": 6.8 }
+  },
+
+  "3399": {
+    "finnish": "Anopinkieli",
+    "latin": "Sansevieria trifasciata",
+    "wateringIntervalDays": 18,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.15 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 5 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 27 },
+    "xWateringPhLevel": { "min": 6.0, "max": 7.5 }
+  },
+
+  "4478": {
+    "finnish": "Kilpipiilea",
+    "latin": "Pilea peperomioides",
+    "wateringIntervalDays": 6,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.2 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 6 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 16, "max": 25 },
+    "xWateringPhLevel": { "min": 6.0, "max": 7.0 }
+  },
+
+  "5590": {
+    "finnish": "Rönsylilja",
+    "latin": "Chlorophytum comosum",
+    "wateringIntervalDays": 5,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.22 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 6 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 15, "max": 27 },
+    "xWateringPhLevel": { "min": 6.0, "max": 6.5 }
+  },
+
+  "6022": {
+    "finnish": "Rahapuu",
+    "latin": "Crassula ovata",
+    "wateringIntervalDays": 12,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.15 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 5 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 26 },
+    "xWateringPhLevel": { "min": 6.0, "max": 7.0 }
+  },
+
+  "7134": {
+    "finnish": "Palmuvehka",
+    "latin": "Zamioculcas zamiifolia",
+    "wateringIntervalDays": 14,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.18 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 6 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 16, "max": 28 },
+    "xWateringPhLevel": { "min": 6.0, "max": 7.5 }
+  },
+
+  "8266": {
+    "finnish": "Rukoilijankukka",
+    "latin": "Maranta leuconeura",
+    "wateringIntervalDays": 4,
+    "xWateringPeriod": ["Morning", "Evening"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.3 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 8 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 20, "max": 30 },
+    "xWateringPhLevel": { "min": 5.5, "max": 6.5 }
+  },
+
+  "9110": {
+    "finnish": "Kuningasvehka",
+    "latin": "Ficus lyrata",
+    "wateringIntervalDays": 7,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.35 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 10 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 27 },
+    "xWateringPhLevel": { "min": 5.5, "max": 7.0 }
+  },
+
+  "1044": {
+    "finnish": "Kentiesvehka (Peace lily)",
+    "latin": "Spathiphyllum wallisii",
+    "wateringIntervalDays": 3,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.3 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 7 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 28 },
+    "xWateringPhLevel": { "min": 5.8, "max": 6.5 }
+  },
+
+  "1159": {
+    "finnish": "Viirivehka",
+    "latin": "Aglaonema commutatum",
+    "wateringIntervalDays": 6,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.28 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 7 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 26 },
+    "xWateringPhLevel": { "min": 5.5, "max": 6.5 }
+  },
+
+  "1290": {
+    "finnish": "Juoru",
+    "latin": "Tradescantia zebrina",
+    "wateringIntervalDays": 4,
+    "xWateringPeriod": ["Morning"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.22 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 6 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 18, "max": 30 },
+    "xWateringPhLevel": { "min": 5.8, "max": 6.2 }
+  },
+  
+  "7742": {
+    "finnish": "Saniainen (Nephrolepis)",
+    "latin": "Nephrolepis exaltata",
+    "wateringIntervalDays": 3,
+    "xWateringPeriod": ["Morning", "Evening"],
+    "xWateringAvgVolumeRequirement": { "unit": "gallon", "value": 0.28 },
+    "xWateringDepthRequirement": { "unit": "cm", "value": 8 },
+    "xWateringBasedTemperature": { "unit": "celsius", "min": 16, "max": 24 },
+    "xWateringPhLevel": { "min": 5.0, "max": 6.0 }
+  }
+}

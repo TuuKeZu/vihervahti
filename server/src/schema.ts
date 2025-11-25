@@ -1,3 +1,4 @@
+import { PlantCache } from "./plants/api";
 
 
 
@@ -31,4 +32,15 @@ export interface SensorUpdatePaired extends SensorUpdateBase {
 
 export interface SensorUpdateUnpaired extends SensorUpdateBase {
     type: SensorUpdateType.Unpaired;
+}
+
+export enum PotSize {
+    Small = 'SMALL',
+    Medium = 'MEDIUM',
+    Big = 'BIG'
+}
+
+export interface UserParameters {
+    plant: PlantCache;
+    potSize: PotSize;
 }

@@ -8,7 +8,8 @@
     "watch": "tsc -w",
     "start": "node ./bin/index.js",
     "prod": "tsc && node ./bin/index.js",
-    "dev": "nodemon ./src/index.ts"
+    "dev": "env $(cat .env) nodemon ./src/index.ts",
+    "init": "tsc && node --env-file=.env ./bin/plants/initialize.js"
   },
   "author": "",
   "license": "MIT",
