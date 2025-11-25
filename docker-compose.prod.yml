@@ -1,0 +1,10 @@
+services:
+  server:
+    image: ghcr.io/tuukezu/vihervahti:server-latest
+    environment:
+      - PORT=8008
+    network_mode: host
+
+  mobile:
+    image: ghcr.io/tuukezu/vihervahti:mobile-latest
+    network_mode: host
