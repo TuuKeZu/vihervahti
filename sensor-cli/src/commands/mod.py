@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from networking import commands
 from state import state
+from config.mod import save_config
 
 
 def initialized(command: dict[str, str]):
@@ -30,6 +31,19 @@ def unpaired(command: dict[str, str]):
     commands.callback(uuid)
     print('> Device succesfully unpaired')
 
+def setup(command: dict[str, str]):
+    uuid = command['uuid']
+    params = command['params']
+    config = {
+        'plant': params['plant'],
+        'potSize': params['potSize']
+    }
+
+    save_config(config)
+
+    commands.callback(uuid)
+    print('> Device setup succesfully')
+
 def unknown(command: dict[str, str]):
     print('unknown command')
     pass
@@ -37,14 +51,15 @@ def unknown(command: dict[str, str]):
 COMMAND_MAP: dict[str, Callable[[], None]] = {
     'INITIALIZED': initialized,
     'PAIRED': paired,
-    'UNPAIRED': unpaired
+    'UNPAIRED': unpaired,
+    'SETUP': setup
 }
 
 def handle_command(command: dict) -> Callable[[], None]:
     print(f'> command: {command['type']}')
-    callback = COMMAND_MAP[command['type']]
-
-    if callback is None:
+    if command['type'] not in COMMAND_MAP:
         return unknown
+    
+    callback = COMMAND_MAP[command['type']]
     
     return callback

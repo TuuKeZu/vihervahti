@@ -3,7 +3,8 @@ import { useAuth, useAuthSensor, useSensor, useState } from '../middleware/state
 import { onError, StateError } from '../error';
 import Joi from 'joi';
 import { validateBody, validateParams } from '@tuukezu/joi-express';
-import { Sensor, SensorUpdatePaired, SensorUpdateType, SensorUpdateUnpaired } from '../schema';
+import { Sensor, SensorUpdatePaired, SensorUpdateSetup, SensorUpdateType, SensorUpdateUnpaired } from '../schema';
+import { fetchPlantInfo } from '../plants/api';
 
 const router = express.Router();
 
@@ -40,7 +41,8 @@ router.get('/get', (req, res) => {
     const sensor = useAuthSensor(req, res).mapErr(res, onError);
     if (!sensor) return;
 
-    res.json(sensor);
+
+    res.json({ ...sensor, commandQueue: [] });
 });
 
 router.post('/unpair', (req, res) => {
@@ -75,6 +77,33 @@ router.get('/callback/:uuid/:commandUuid', (req, res) => {
 
     res.json(state.commandCallback(uuid, commandUuid));
 });
+
+router.post('/setup', (req, res) => {
+    const sensor = useAuthSensor(req, res).mapErr(res, onError);
+    if (!sensor) return;
+
+    const bodySchema = Joi.object({
+        plantId: Joi.string().allow(null).required(),
+        potSize: Joi.string().allow('SMALL', 'MEDIUM', 'BIG')
+    });
+
+    const request = validateBody(req, res, bodySchema);
+    if (!request) return null;
+
+    const state = useState();
+    const { plantId, potSize } = request;
+
+    const plant = fetchPlantInfo(plantId).mapErr(res, onError);
+    if (!plant) return;
+
+    const cmd = state.sendCommand(sensor.uuid, <SensorUpdateSetup>{ params: {
+        plant,
+        potSize
+    }, type: SensorUpdateType.Setup });
+
+    return res.status(200).send(cmd);
+});
+
 
 
 export default router;

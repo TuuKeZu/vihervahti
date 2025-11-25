@@ -1,8 +1,9 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { fetchApi } from "$lib/networking";
+    import { dispatchCommand, fetchApi } from "$lib/networking";
     import { onMount } from "svelte";
-    import { PotSize } from "../../schema";
+    import { PotSize, type InitSensorParameters, type Sensor, type SensorParameters } from "../../schema";
+    import { pairedSensor, sensor } from "$lib/store";
 
     const SIZES = {
         [PotSize.Small]: ['Pieni', '(alle litra)'],
@@ -12,20 +13,51 @@
 
     enum State {
         SelectPlant,
-        SelectRuukku // :D
+        SelectRuukku, // :D,
+        DisplayInfo
     }
 
     type Entry = { id: string, name: string, latin: string };
 
-    let status: State = $state(State.SelectRuukku);
+    let _state: State = $state(State.SelectPlant);
+    let params: Partial<InitSensorParameters> = $state({})
     let listing: Entry[] = $state([]);
 
 
     const selectPlant = (id: string) => {
-        status = State.SelectRuukku;
+        params.plantId = id;
+        _state = State.SelectRuukku;
     }
 
+    const selectPot = (pot: PotSize) => {
+        if (!$sensor) return;
+        params.potSize = pot;
+
+        dispatchCommand($sensor.serial, fetchApi('POST', '/interface/setup', { json: false, uuid: $pairedSensor, body: params }))
+        .then(a => {
+            _state = State.DisplayInfo;
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    }
+
+    $effect(() => {
+        fetchApi<Sensor>('GET', '/interface/get', { json: true, uuid: $pairedSensor })
+        .then(_sensor => {
+            sensor.set(_sensor);
+        })
+        .catch(err => {
+            sensor.set(null);
+            pairedSensor.set(null);
+            goto('/');
+        })
+
+        _state;
+    })
+
     onMount(() => {
+
         fetchApi<Entry[]>('GET', '/plants/list', { json: true })
         .then(_list => {
             listing = _list;
@@ -40,16 +72,19 @@
 
 <main>
     <div class="header">
-        <div class="status {status == State.SelectPlant ? 'selected' : ''}">
+        <div onclick={() => _state = State.SelectPlant} class="status {_state == State.SelectPlant ? 'selected' : ''}">
             <p>1</p>
         </div>
-        <div class="status {status == State.SelectRuukku ? 'selected' : ''}">
+        <div onclick={() => _state = State.SelectRuukku} class="status {_state == State.SelectRuukku ? 'selected' : ''}">
             <p>2</p>
+        </div>
+        <div onclick={() => _state = State.DisplayInfo} class="status {_state == State.DisplayInfo ? 'selected' : ''}">
+            <p>3</p>
         </div>
     </div>
     <div class="content">
-        {#key (status)}
-            {#if status == State.SelectPlant}
+        {#key (_state)}
+            {#if _state == State.SelectPlant}
                 <h1>Valitse kasvi</h1>
         
                 
@@ -67,7 +102,7 @@
                         </div>
                     {/each}
                 </div>
-            {:else if status == State.SelectRuukku}
+            {:else if _state == State.SelectRuukku}
                 <h1>Kuinka suuri ruukku kasvilla on?</h1>
 
                 <div class="listing size">
@@ -77,10 +112,14 @@
                                 <h2>{title}</h2>
                                 <p>{desc}</p>
                             </div>
-                            <button onclick={() => {}} class="arrow">{">"}</button>
+                            <button onclick={() => {selectPot(size as PotSize)}} class="arrow">{">"}</button>
                         </div>
                     {/each}
                 </div>
+            {:else if _state == State.DisplayInfo}
+                <h1>Suositus</h1>
+
+                <p>{JSON.stringify($sensor)}</p>
             {:else}
             {/if}
         {/key}

@@ -1,5 +1,6 @@
 {
   "1023": {
+    "id": "1023",
     "finnish": "Jättipeikonlehti",
     "latin": "Monstera deliciosa",
     "wateringIntervalDays": 7,
@@ -11,6 +12,7 @@
   },
 
   "2841": {
+    "id": "2841",
     "finnish": "Kultaköynnös",
     "latin": "Epipremnum aureum",
     "wateringIntervalDays": 5,
@@ -22,6 +24,7 @@
   },
 
   "3399": {
+    "id": "3399",
     "finnish": "Anopinkieli",
     "latin": "Sansevieria trifasciata",
     "wateringIntervalDays": 18,
@@ -33,6 +36,7 @@
   },
 
   "4478": {
+    "id": "4478",
     "finnish": "Kilpipiilea",
     "latin": "Pilea peperomioides",
     "wateringIntervalDays": 6,
@@ -44,6 +48,7 @@
   },
 
   "5590": {
+    "id": "5590",
     "finnish": "Rönsylilja",
     "latin": "Chlorophytum comosum",
     "wateringIntervalDays": 5,
@@ -55,6 +60,7 @@
   },
 
   "6022": {
+    "id": "6022",
     "finnish": "Rahapuu",
     "latin": "Crassula ovata",
     "wateringIntervalDays": 12,
@@ -66,6 +72,7 @@
   },
 
   "7134": {
+    "id": "7134",
     "finnish": "Palmuvehka",
     "latin": "Zamioculcas zamiifolia",
     "wateringIntervalDays": 14,
@@ -77,6 +84,7 @@
   },
 
   "8266": {
+    "id": "8266",
     "finnish": "Rukoilijankukka",
     "latin": "Maranta leuconeura",
     "wateringIntervalDays": 4,
@@ -88,6 +96,7 @@
   },
 
   "9110": {
+    "id": "9110",
     "finnish": "Kuningasvehka",
     "latin": "Ficus lyrata",
     "wateringIntervalDays": 7,
@@ -99,6 +108,7 @@
   },
 
   "1044": {
+    "id": "1044",
     "finnish": "Kentiesvehka (Peace lily)",
     "latin": "Spathiphyllum wallisii",
     "wateringIntervalDays": 3,
@@ -110,6 +120,7 @@
   },
 
   "1159": {
+    "id": "1159",
     "finnish": "Viirivehka",
     "latin": "Aglaonema commutatum",
     "wateringIntervalDays": 6,
@@ -121,6 +132,7 @@
   },
 
   "1290": {
+    "id": "1290",
     "finnish": "Juoru",
     "latin": "Tradescantia zebrina",
     "wateringIntervalDays": 4,
@@ -132,6 +144,7 @@
   },
   
   "7742": {
+    "id": "7742",
     "finnish": "Saniainen (Nephrolepis)",
     "latin": "Nephrolepis exaltata",
     "wateringIntervalDays": 3,

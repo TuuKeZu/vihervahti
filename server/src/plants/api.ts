@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { resolve } from 'path';
 import { Result, StateError } from '../error';
+import { PlantCache } from '../schema';
 const mapPath = './id-map.json';
 const cachePath = './cache.json';
 
@@ -8,27 +9,6 @@ const { PERENUAL_API_KEY } = process.env;
 
 export let map: { finnish: string, id: number }[] = [];
 export let cache: Record<number, PlantCache> = {};
-
-
-export interface PlantCache {
-    finnish: string,
-    latin: string,
-    wateringIntervalDays: number,
-    xWateringPeriod: string[],
-    xWateringAvgVolumeRequirement: {
-        unit: 'gallon' | 'liter',
-        value: number,
-    },
-    xWateringBasedTemperature: {
-        unit: 'celsius',
-        min: number,
-        max: number
-    },
-    xWateringPhLevel: {
-        min: number,
-        max: number
-    }
-}
 
 export const initialize = () => {
     const _map = fs.readFileSync(mapPath, { encoding: 'utf-8' });

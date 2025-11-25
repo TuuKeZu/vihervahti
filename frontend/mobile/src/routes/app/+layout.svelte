@@ -15,6 +15,9 @@
         fetchApi<Sensor>('GET', '/interface/get', { json: true, uuid: paired })
         .then(_sensor => {
             sensor.set(_sensor);
+
+            if (!_sensor.params)
+                goto('/setup');
         })
         .catch(err => {
             sensor.set(null);

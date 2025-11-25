@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { pairedSensor } from '../../lib/store';
+    import { pairedSensor, sensor } from '../../lib/store';
 </script>
 
 
@@ -8,7 +8,7 @@
 
 <div class="plant">
     <img class="smile" alt="Smile" />
-    <h1>{"<plant name>"}</h1>
+    <h1>{$sensor?.params.plant.finnish}</h1>
     <div class="status-fields">
         <div class="status">
             <p class="title">Kosteus</p>
@@ -37,7 +37,7 @@
 
 <style>
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         margin: 10px;
     }
 

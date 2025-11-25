@@ -69,3 +69,7 @@ export const onError = (err: StateError, res: Response): void => {
     const [status, info] = ERROR_MAP[err] ?? [500, 'unhandled error'];
     res.status(status).send(info);
 }
+
+export const toNull = (_err: StateError, _res: Response): void => {
+    return;
+}

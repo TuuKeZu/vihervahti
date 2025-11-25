@@ -1,5 +1,5 @@
 import { Result, StateError, Unit } from "./error";
-import { Sensor, AnySensorUpdate, SensorUpdateBase, SensorUpdatePaired, SensorUpdateType, SensorUpdateUnpaired } from "./schema";
+import { Sensor, AnySensorUpdate, SensorUpdateBase, SensorUpdatePaired, SensorUpdateType, SensorUpdateUnpaired, SensorUpdateSetup } from "./schema";
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -78,7 +78,8 @@ export class State {
         const COMMAND_MAP: Record<SensorUpdateType, (uuid: string, cmd: AnySensorUpdate) => void> = {
             [SensorUpdateType.Initialized]: (_, __) => { },
             [SensorUpdateType.Paired]: this.sensorPaired,
-            [SensorUpdateType.Unpaired]: this.sensorUnpaired
+            [SensorUpdateType.Unpaired]: this.sensorUnpaired,
+            [SensorUpdateType.Setup]: this.sensorSetup
         }
 
         COMMAND_MAP[command.type](uuid, command)
@@ -99,13 +100,22 @@ export class State {
         }));
     }
 
-        private sensorUnpaired = (uuid: string, command: AnySensorUpdate) => {
+    private sensorUnpaired = (uuid: string, command: AnySensorUpdate) => {
         const _cmd = command as SensorUpdateUnpaired;
 
         this.updateSensor(uuid, (_sensor) => ({
             ..._sensor,
             paired: false,
             owner: null
+        }));
+    }
+
+    private sensorSetup = (uuid: string, command: AnySensorUpdate) => {
+        const _cmd = command as SensorUpdateSetup;
+
+        this.updateSensor(uuid, (_sensor) => ({
+            ..._sensor,
+            params: _cmd.params
         }));
     }
 }

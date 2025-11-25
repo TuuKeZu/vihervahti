@@ -28,7 +28,7 @@
         fetchApi<Sensor>('GET', '/interface/get', { json: true, uuid })
         .then(_sensor => {
             sensor.set(_sensor);
-            goto('/app');
+            goto('/setup');
         })
     }
 
