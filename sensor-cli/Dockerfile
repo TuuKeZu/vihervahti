@@ -7,7 +7,7 @@ apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir --upgrade pip setuptools
 
-RUN pip install --no-cache-dir adafruit-blinka adafruit-python-shell requests RPI.GPIO adafruit-circuitpython-seesaw
+RUN pip install --no-cache-dir adafruit-blinka adafruit-python-shell requests RPI.GPIO adafruit-circuitpython-seesaw dotenv
 
 WORKDIR /app
 

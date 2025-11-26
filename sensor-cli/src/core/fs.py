@@ -1,5 +1,5 @@
 
-HISTORY_PATH = "../history.txt"
+from _config import HISTORY_PATH
 
 def save_to_history(entry: dict[str, str]):
     try:

@@ -4,13 +4,7 @@ from requests import Response
 from networking.errors import network, handle_error
 import os
 import time
-
-# API_URL = os.getenv("API_URL")
-# uuid = os.getenv("DEVICE_UUID")
-API_URL = 'http://localhost:8008/api'
-UUID = '1234-5'
-CODE = '99999'
-SERIAL = '9876-5'
+from _config import UUID
 
 DEFAULT_HEADERS = { 'uuid': UUID }
 

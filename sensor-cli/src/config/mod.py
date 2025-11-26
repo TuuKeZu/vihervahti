@@ -1,6 +1,5 @@
 import pickle
-
-CONFIG_PATH = "../config.pkl"
+from _config import CONFIG_PATH
 
 def load_config() -> dict[str, str] | None:
     try:

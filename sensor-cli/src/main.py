@@ -4,6 +4,8 @@ from state import state
 import core.mod as core
 import core.gpio as gpio
 
+from threading import Thread
+
 def onTick():
     commands.fetchCommandQueue()
     pass
@@ -17,10 +19,23 @@ def main():
     if gpio.scan():
         hardware = gpio.SensorHardware()
 
-    while True:
-        onTick()
-        if (hardware):
-            core.onTick(hardware)
-        time.sleep(3)
+    def thread_1():
+        while True:
+            if (hardware):
+                core.onTick(hardware)
+            time.sleep(30)
+
+    def thread_2():
+        while True:
+            onTick()
+            time.sleep(2)
+
+    t1 = Thread(target=thread_1)
+    t2 = Thread(target=thread_2)
+
+    t1.start()
+    t2.start()
+
+    print("Initialized both threads")
 
 main()
