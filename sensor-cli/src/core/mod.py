@@ -1,13 +1,10 @@
 import time
 from core.fs import save_to_history
+from core.gpio import SensorHardware
 from networking.commands import history
 
-def onTick():
-    entry = {
-        't': int(time.time()),
-        'd': 800,
-        'tp': 24,
-    }
+def onTick(hardware: SensorHardware):
+    entry = hardware.read()
 
     save_to_history(entry)
     history(entry)
