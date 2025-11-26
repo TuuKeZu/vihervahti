@@ -10,7 +10,7 @@ export interface Sensor {
     serial: string;
     paired: boolean;
     owner: string;
-    params: SensorParameters;
+    params: SensorParameters | null;
     history: HistoryEntry[];
     latestStatus: SmileStatus | null;
 }

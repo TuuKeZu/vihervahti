@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
 
     const x = $derived($sensor?.history.map(({ t }) => t));
-    const y1 = $derived($sensor?.history.map(({ d }) => d));
+    const y1 = $derived($sensor?.history.map(({ d }) => (d / 1700) * 100));
     const y2 = $derived($sensor?.history.map(({ tp }) => tp));
 
 
@@ -34,6 +34,10 @@
                 scales: {
                     x: {
                         display: false
+                    },
+                    y: {
+                        max: 100,
+                        min: 0,
                     }
                 }
             },
@@ -45,7 +49,7 @@
 <h1>Kasteluhistoria</h1>
 
 <div class="plant">
-    <h2>{$sensor?.params.plant.finnish}</h2>
+    <h2>{$sensor?.params?.plant.finnish}</h2>
     <canvas id="chart"></canvas>
 </div>
 

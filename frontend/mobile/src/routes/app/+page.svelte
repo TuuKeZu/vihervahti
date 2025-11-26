@@ -13,7 +13,7 @@
 {#each [1] as _}
     <div class="plant" transition:fade>
         <img class="smile {$sensor?.latestStatus?.smile ?? Smile.Happy}" />
-        <h1>{$sensor?.params.plant.finnish}</h1>
+        <h1>{$sensor?.params?.plant.finnish}</h1>
         <div class="status-fields">
             <div class="status">
                 <p class="title blue">Kosteus</p>
