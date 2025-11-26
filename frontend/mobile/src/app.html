@@ -24,10 +24,18 @@
 			--shadow-light: rgba(0, 0, 0, 0.075);
 
 			--border-main: lightgray;
+
+			--yellow: #edc52f;
+
+			--blue: #0088fe;
+			--blue-light: #86c7ff;
+
+			font-family: 'regular';
 		}
 
 		h1 {
 			font-size: 1.8rem;
+			font-family: 'bold';
 		}
 
 		p, a {
@@ -36,6 +44,14 @@
 
 		.colored {
 			color: var(--accent-main);
+		}
+
+		.yellow {
+			color: var(--yellow);
+		}
+
+		.blue {
+			color: var(--blue);
 		}
 
 		.selectable {
@@ -57,6 +73,10 @@
 			padding-bottom: 2px;
 
 			margin: 5px;
+
+			cursor: pointer;
+
+			transition: background-color .2s ease-in-out;
 		}
 
 		.disabled {
@@ -70,9 +90,24 @@
 			color: var(--text-white);
 
 			border-radius: 10px;
-			box-shadow: 0 0 15px var(--shadow-main);
 
 			cursor: pointer;
+
+			transition: background-color .2s ease-in-out;
+		}
+
+		.arrow:hover,
+		button:hover {
+			background-color: var(--accent-lighter);
+		}
+
+		@font-face {
+			font-family: 'regular';
+			src: url(fonts/SF-Pro-Display-Regular.woff);
+		}
+		@font-face {
+			font-family: 'bold';
+			src: url(fonts/SF-Pro-Display-Semibold.woff);
 		}
 	</style>
 	<body data-sveltekit-preload-data="hover">

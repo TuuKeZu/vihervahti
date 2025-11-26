@@ -1,5 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import { loading } from "$lib/store";
+    import { onMount } from "svelte";
 
 
     const nav = () => {
@@ -50,7 +52,10 @@
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
 
-        background-color: darkseagreen;
+        background-image: url(img/TervetuloaHero.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 
     .content {

@@ -92,7 +92,7 @@
                 <div class="listing plants">
                     <div class="elem head">
                         <p>Suosittuja huonekasveja</p>
-                    </div>
+                    </div>app
                     {#each listing as plant}
                         <div class="elem plant" transition:fade>
                             <div class="text">
@@ -120,7 +120,7 @@
             {:else if _state == State.DisplayInfo}
                 <h1>Suositus</h1>
 
-                <p>{JSON.stringify($sensor)}</p>
+                
             {:else}
             {/if}
         {/key}
@@ -250,6 +250,12 @@
 
         color: var(--text-black);
         opacity: 0.5;
+        
+        cursor: pointer;
+    }
+
+    .elem button:hover {
+        opacity: 0.7;
     }
 
     .elem.size p {

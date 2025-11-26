@@ -1,14 +1,16 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
+    import { goto, onNavigate } from '$app/navigation';
     import { fetchApi } from '$lib/networking';
     import { clearPairedSensor, loading, pairedSensor, sensor } from '$lib/store';
+    import { onMount } from 'svelte';
     import type { Sensor } from '../../schema';
 
-
+    let path = $state(window.location.pathname);
+    
     const { children } = $props();
-
+    
     const paired = $pairedSensor;
-
+    
     $effect(() => {
         if ($sensor != null) return;
         loading.set(true);
@@ -26,7 +28,15 @@
             pairedSensor.set(null);
             goto('/');
         })
-    
+
+    });
+
+    onNavigate(() => {
+        path = window.location.pathname;
+    });
+
+    onMount(() => {
+        loading.set(false);
     })
 
 </script>
@@ -48,18 +58,18 @@
             <div class="inner">
                 <div class="icon" onclick={() => goto('/app')}>
                     <!-- svelte-ignore a11y_missing_attribute -->
-                    <img >
-                    <p>Omat kasvit</p>
+                    <img src="/icons/{ path == '/app' ? 'OmatKasvit_valittu.svg' : 'OmatKasvit.svg' }" >
+                    <p class="{path == '/app' ? 'selected' : ''}">Omat kasvit</p>
                 </div>
                 <div class="icon" onclick={() => goto('/app/history')}>
                     <!-- svelte-ignore a11y_missing_attribute -->
-                    <img >
-                    <p>Historia</p>
+                    <img src="/icons/{ path == '/app/history' ? 'Historia_valittu.svg' : 'Historia.svg' }" >
+                    <p class="{path == '/app/history' ? 'selected' : ''}">Historia</p>
                 </div>
                 <div class="icon" onclick={() => goto('/app/settings')}>
                     <!-- svelte-ignore a11y_missing_attribute -->
-                    <img >
-                    <p>Asetukset</p>
+                    <img src="/icons/{ path == '/app/settings' ? 'Asetukset_valittu.svg' : 'Asetukset.svg' }" >
+                    <p class="{path == '/app/settings' ? 'selected' : ''}">Asetukset</p>
                 </div>
             </div>
         </nav>
@@ -116,7 +126,6 @@
         justify-content: space-evenly;
 
         background-color: white;
-        box-shadow: 0 0 10px 10px var(--shadow-light);
 
         width: 90%;
 
@@ -134,15 +143,25 @@
         padding-right: 10px;
 
         cursor: pointer;
+
+        transition: opacity .2s ease-in-out;
     }
 
     .icon img {
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         margin: 3px;
     }
 
     .icon p {
         font-size: .9rem;
+    }
+
+    .icon p.selected {
+        color: var(--blue);
+    }
+
+    .icon:hover {
+        opacity: 0.7;
     }
 </style>

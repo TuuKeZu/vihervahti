@@ -1,38 +1,40 @@
 <script lang="ts">
+    import { fade, fly } from 'svelte/transition';
     import { pairedSensor, sensor } from '../../lib/store';
 </script>
 
 
 <h1>Omat kasvit</h1>
 
-
-<div class="plant">
-    <img class="smile" alt="Smile" />
-    <h1>{$sensor?.params.plant.finnish}</h1>
-    <div class="status-fields">
-        <div class="status">
-            <p class="title">Kosteus</p>
-            <div class="rows">
-                <!-- svelte-ignore a11y_missing_attribute -->
-                <img />
-                <p class="value">80%</p>
+{#each [1] as _}
+    <div class="plant" transition:fade>
+        <img class="smile" alt="Smile" />
+        <h1>{$sensor?.params.plant.finnish}</h1>
+        <div class="status-fields">
+            <div class="status">
+                <p class="title blue">Kosteus</p>
+                <div class="rows">
+                    <!-- svelte-ignore a11y_missing_attribute -->
+                    <img src="icons/Kosteus.svg" />
+                    <p class="value blue">80%</p>
+                </div>
             </div>
-        </div>
 
-        <div class="status">
-            <p class="title">Seuraava kastelu</p>
-            <div class="rows">
-                <!-- svelte-ignore a11y_missing_attribute -->
-                <img />
-                <p class="value">7 pv</p>
+            <div class="status">
+                <p class="title yellow">Seuraava kastelu</p>
+                <div class="rows">
+                    <!-- svelte-ignore a11y_missing_attribute -->
+                    <img src="icons/SeuraavaKastelu.svg" />
+                    <p class="value">7 pv</p>
 
-                <!-- svelte-ignore a11y_missing_attribute -->
-                <img />
-                <p class="value">1 dl</p>
+                    <!-- svelte-ignore a11y_missing_attribute -->
+                    <img src="icons/SeuraavanKastelunMaara.svg" />
+                    <p class="value">1 dl</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{/each}
 
 
 <style>
@@ -88,8 +90,6 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-
-        background-color: whitesmoke;
 
         padding: 3px;
     }

@@ -1,8 +1,13 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
     import { loading } from '$lib/store';
+    import { onMount } from 'svelte';
 
 	let { children } = $props();
+
+	onMount(() => {
+        loading.set(false);
+    })
 </script>
 
 <svelte:head>
@@ -27,6 +32,8 @@
 
 		align-items: center;
 		justify-content: center;
+
+		background-color: whitesmoke;
 	}
 
 	.mobile {
@@ -40,7 +47,7 @@
 		max-width: 400px;
 		max-height: 800px;
 
-		border: solid black;
+		background-color: whitesmoke;
 	}
 
 	.mobile.loading {
