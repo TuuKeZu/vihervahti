@@ -9,7 +9,7 @@ def initialized(command: dict[str, str]):
     state.initialized = True
 
     commands.callback(uuid)
-    print('> Device successfully initialized')
+    print("> Device successfully initialized")
     pass
 
 def paired(command: dict[str, str]):
@@ -19,7 +19,7 @@ def paired(command: dict[str, str]):
     state.paired = True
 
     commands.callback(uuid)
-    print('> Device succesfully paired')
+    print("> Device succesfully paired")
 
     pass
 
@@ -29,7 +29,7 @@ def unpaired(command: dict[str, str]):
     state.paired = False
 
     commands.callback(uuid)
-    print('> Device succesfully unpaired')
+    print("> Device succesfully unpaired")
 
 def setup(command: dict[str, str]):
     uuid = command['uuid']
@@ -42,10 +42,10 @@ def setup(command: dict[str, str]):
     save_config(config)
 
     commands.callback(uuid)
-    print('> Device setup succesfully')
+    print("> Device setup succesfully")
 
 def unknown(command: dict[str, str]):
-    print('unknown command')
+    print("unknown command")
     pass
 
 COMMAND_MAP: dict[str, Callable[[], None]] = {
@@ -56,7 +56,7 @@ COMMAND_MAP: dict[str, Callable[[], None]] = {
 }
 
 def handle_command(command: dict) -> Callable[[], None]:
-    print(f'> command: {command['type']}')
+    print(f"> command: {command['type']}")
     if command['type'] not in COMMAND_MAP:
         return unknown
     

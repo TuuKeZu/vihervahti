@@ -9,7 +9,7 @@ def onTick():
     pass
 
 def main():
-    print('> starting')
+    print("> starting")
     commands.initialize()
 
     hardware = None

@@ -9,16 +9,16 @@ def unknown_sensor():
 
 def sensor_exists():
     state.initialized = True
-    print('> Sensor already initialized')
+    print("> Sensor already initialized")
     pass
 
 def unknown():
-    print('> unknown error')
+    print("> unknown error")
     pass
 
 
 def network():
-    print('> network error')
+    print("> network error")
     pass
 
 ERROR_MAP: dict[int, Callable[[], None]] = {
@@ -30,7 +30,7 @@ def handle_error(res: Response) -> Callable[[], None]:
     callback = ERROR_MAP[res.status_code]
 
     if callback is None:
-        print(f'> error: {res.text}')
+        print(f"> error: {res.text}")
         return unknown
     
     return callback

@@ -4,7 +4,7 @@ HISTORY_PATH = "../history.txt"
 def save_to_history(entry: dict[str, str]):
     try:
         with open(HISTORY_PATH, 'a') as f:
-            f.write(f"{entry["t"]};{entry["d"]};{entry["tp"]}\n")
+            f.write(f"{entry['t']};{entry['d']};{entry['tp']}\n")
             f.flush()
 
     except:
