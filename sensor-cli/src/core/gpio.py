@@ -24,7 +24,7 @@ class SensorHardware ():
 
     def read(self):
         touch = self.ss.moisture_read()
-        temp = self.get_temp()
+        temp = self.ss.get_temp()
 
         return {
             't': int(time.time()),
