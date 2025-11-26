@@ -2,10 +2,8 @@
     import { goto } from "$app/navigation";
     import { fetchApi } from "$lib/networking";
     import { onMount } from "svelte";
-    import type { AvailableSensor } from "../../schema";
+    import { Smile, type AvailableSensor, type SmileStatus } from "../../schema";
     import { loading } from "$lib/store";
-
-
 
     let available: AvailableSensor[] = $state([]); 
     let selected: AvailableSensor | null = $state(null);
@@ -15,6 +13,12 @@
         const list = await fetchApi<AvailableSensor[]>('GET', '/interface/sensors', { json: true });
         available = list;
         _loading = false;
+
+
+        setInterval(async () => {
+            const list = await fetchApi<AvailableSensor[]>('GET', `/interface/sensors?t=${(new Date()).getTime()}`, { json: true });
+            available = list;
+        }, 2000);
     });
 
     const nav = () => {
@@ -47,6 +51,8 @@
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
             <p onclick={() => selected = sensor} class="selectable {sensor == selected ? 'disabled' : ''}">#{sensor.serial}</p>
+        {:else}
+            <p>Ei vihervahteja lähettyvillä</p>
         {/each}
     </li>
 {/if}
@@ -57,7 +63,8 @@
         flex-direction: column;
         align-items: center;
 
-        box-shadow: 0 0 15px var(--shadow-main);
+        background-color: white;
+
         border-radius: 10px;
 
         margin: 10px;

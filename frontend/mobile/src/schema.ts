@@ -11,7 +11,8 @@ export interface Sensor {
     paired: boolean;
     owner: string;
     params: SensorParameters;
-    history: HistoryEntry[]
+    history: HistoryEntry[];
+    latestStatus: SmileStatus | null;
 }
 
 export interface HistoryEntry {
@@ -55,4 +56,37 @@ export interface PlantCache {
         min: number,
         max: number
     }
+}
+
+
+/* ========================== */
+
+export interface BaseStatus {
+    type: 'SETUP' | 'SMILE';
+}
+
+export interface SetupStatus extends BaseStatus {
+    type: 'SETUP',
+    serial: string;
+    code: string;
+}
+
+export interface SmileStatus extends BaseStatus {
+    type: 'SMILE',
+    smile: Smile;
+    percentage: number;
+    temp: number;
+    days: number;
+    amount: number;
+}
+
+export enum StatusType {
+    Setup = 'SETUP',
+    Smile = 'SMILE'
+}
+
+export enum Smile {
+    Sad = 'SAD',
+    Neutral = 'NEUTRAL',
+    Happy = 'HAPPY',
 }

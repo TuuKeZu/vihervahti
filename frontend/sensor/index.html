@@ -13,12 +13,40 @@
     <div class="container">
         <main>
             <div id="SETUP" style="display: none;" class="interface">
-                <h1>Vihervahti</h1>
-                <p class="serial" id="SETUP-SERIAL">...</p>
-                <p class="code" id="SETUP-CODE">...</p>
+                <div class="top">
+                    <h1>Vihervahti</h1>
+                    <p class="serial" id="SETUP-SERIAL">...</p>
+                    <p class="code" id="SETUP-CODE">...</p>
+                </div>
+
+                <div class="bottom">
+                    <img src="static/img/Yhdistetty.svg" />
+                    <p class="connect">Valmiina<br>Yhdistämään</p>
+                </div>
             </div>
             <div id="SMILE" style="display: none;" class="interface">
-                <h1>Smile</h1>
+                <img id="SMILE-IMG" src="static/img/HymyHyvä.svg" />
+
+                <div id="GOOD" style="display: flex;" class="bottom">
+                    <img src="static/img/SeuraavaKastelu.svg" />
+                    <div class="column">
+                        <p class="small">Kasteluun</p>
+                        <p id="STATUS-GOOD" class="status">... päivää</p>
+                    </div>
+                </div>
+
+                <div id="NEUTRAL" style="display: none;" class="bottom">
+                    <div class="row">
+                        <img src="static/img/Kosteus.svg" />
+                        <p id="STATUS-NEUTRAL" class="water neutral">.. dl</p>
+                    </div>
+                </div>
+                <div id="BAD" style="display: none;" class="bottom">
+                   <div class="row bad">
+                        <img src="static/img/Kosteus.svg" />
+                        <p id="STATUS-BAD" class="water bad">.. dl</p>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

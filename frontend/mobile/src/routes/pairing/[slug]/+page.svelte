@@ -14,21 +14,31 @@
 
     let uuid: string | null = $state(null);
     let code = $state('');
+    let error = $state('');
 
     const pair = async () => {
         if (code.length != 5 || !uuid) return;
+        error = '';
 
-        await dispatchCommand(uuid, fetchApi('POST', '/interface/pair', { json: false, body: { code, uuid } }));
+        await dispatchCommand(uuid, fetchApi('POST', '/interface/pair', { json: false, body: { code, uuid } }))
+        .catch(err => {
+            console.error(err);
+            error = err;
+            code = '';
+        })
         setPairedSensor(uuid);
-        
-        setTimeout(redirctApp, 500);
+        redirctApp();
     }
 
     const redirctApp = () => {
         fetchApi<Sensor>('GET', '/interface/get', { json: true, uuid })
         .then(_sensor => {
             sensor.set(_sensor);
-            goto('/setup');
+
+            if (!_sensor.params)
+                return goto('/setup');
+
+            goto('/app');
         })
     }
 
@@ -59,6 +69,7 @@
         />
 
         <button onclick={pair} class="{ code.length != 5 ? 'disabled' : ''}">Yhdistä</button>
+        <p class="error">{error}</p>
     </div>
 {/if}
 
@@ -72,7 +83,14 @@
 
     .otp button {
         padding: 10px;
+        margin: 20px;
+    }
+
+    .error {
         margin: 10px;
+        text-align: center;
+
+        font-size: 1.2rem;
     }
     
 </style>

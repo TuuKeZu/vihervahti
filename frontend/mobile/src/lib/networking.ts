@@ -65,6 +65,7 @@ export const dispatchCommand = (serial: string, fetch: Promise<string>): Promise
             }, 1000);
         })
         .catch(err => {
+            loading.set(false);
             return reject(err);
         })
 

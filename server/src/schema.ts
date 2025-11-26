@@ -96,6 +96,7 @@ export interface SmileStatus extends BaseStatus {
     percentage: number;
     temp: number;
     days: number;
+    amount: number;
 }
 
 export enum StatusType {

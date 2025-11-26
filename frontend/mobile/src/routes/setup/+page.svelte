@@ -92,7 +92,7 @@
                 <div class="listing plants">
                     <div class="elem head">
                         <p>Suosittuja huonekasveja</p>
-                    </div>app
+                    </div>
                     {#each listing as plant}
                         <div class="elem plant" transition:fade>
                             <div class="text">
@@ -118,8 +118,19 @@
                     {/each}
                 </div>
             {:else if _state == State.DisplayInfo}
-                <h1>Suositus</h1>
+                <section>
+                    <div class="sun">
+                        <div class="sun-img" ></div>
+    
+                        <p class="yellow">Suositus</p>
+                        <h2>Sijoita kasvisi hajavaloon</h2>
 
+                        <p>Hajavalo sopii parhaiten kasvillesi. Tämän jälkeen sinun tarvitsee vain noudattaa vihervahdin kasteluohjeita.</p>
+
+                        <button onclick={() => goto('/app')}>Ymmärrän</button>
+                    </div>
+
+                </section>
                 
             {:else}
             {/if}
@@ -150,6 +161,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
+
+        padding-bottom: 10px;
+
+        border-bottom: solid 1px var(--border-main);
     }
 
     .status {
@@ -159,25 +174,27 @@
         margin: 10px;
 
         background-color: white;
+        color: var(--accent-main);
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
-        border-radius: 7px;
+        pointer-events: none;
     }
 
     .status.selected {
         background-color: var(--accent-main);
+        color: var(--text-white);
     }
 
 
     .content {
         position: absolute;
         width: 100%;
-        height: calc(100% - 70px);
-        top: 50px;
+        height: calc(100% - 100px);
+        top: 80px;
 
         display: flex;
         flex-direction: column;
@@ -260,6 +277,62 @@
 
     .elem.size p {
         margin-left: 10px;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+
+        height: 100%;
+        max-width: 250px;
+    }
+
+    section h1 {
+        text-align: center;
+    }
+
+    .sun-img {
+        width: 100px;
+        height: 100px;
+        
+        margin: 20px;
+        margin-top: 50px;
+        
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url(/icons/Valo.svg);
+    }
+
+    .sun {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+    }
+
+    .sun .yellow {
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    .sun h2 {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .sun p {
+        text-align: center;
+    }
+
+    .sun button {
+        margin-top: 20px;
+        padding: 7px;
+        font-size: 1.2rem;
     }
 </style>
 

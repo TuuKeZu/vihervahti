@@ -1,6 +1,10 @@
 <script lang="ts">
     import { fade, fly } from 'svelte/transition';
     import { pairedSensor, sensor } from '../../lib/store';
+    import { Smile } from '../../schema';
+
+
+    console.log($sensor);
 </script>
 
 
@@ -8,7 +12,7 @@
 
 {#each [1] as _}
     <div class="plant" transition:fade>
-        <img class="smile" alt="Smile" />
+        <img class="smile {$sensor?.latestStatus?.smile ?? Smile.Happy}" />
         <h1>{$sensor?.params.plant.finnish}</h1>
         <div class="status-fields">
             <div class="status">
@@ -16,7 +20,7 @@
                 <div class="rows">
                     <!-- svelte-ignore a11y_missing_attribute -->
                     <img src="icons/Kosteus.svg" />
-                    <p class="value blue">80%</p>
+                    <p class="value blue">{(($sensor?.latestStatus?.percentage ?? 0) * 100).toFixed(0)}%</p>
                 </div>
             </div>
 
@@ -25,11 +29,11 @@
                 <div class="rows">
                     <!-- svelte-ignore a11y_missing_attribute -->
                     <img src="icons/SeuraavaKastelu.svg" />
-                    <p class="value">7 pv</p>
+                    <p class="value">{$sensor?.latestStatus?.days} pv</p>
 
                     <!-- svelte-ignore a11y_missing_attribute -->
                     <img src="icons/SeuraavanKastelunMaara.svg" />
-                    <p class="value">1 dl</p>
+                    <p class="value bold">{$sensor?.latestStatus?.amount} dl</p>
                 </div>
             </div>
         </div>
@@ -64,7 +68,24 @@
 
         border-radius: 10px;
 
-        background-color: var(--accent-main);
+        background-size: 80% 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .smile.SAD {
+        background-image: url(/icons/HymyHuono.svg);
+        background-color: var(--red-light);
+    }
+
+    .smile.NEUTRAL {
+        background-image: url(/icons/HymyHeikko.svg);
+        background-color: var(--blue-light);
+    }
+
+    .smile.HAPPY {
+        background-image: url(/icons/HymyHyvä.svg);
+        background-color: var(--accent-lighter);
     }
 
     .plant h1 {
@@ -104,5 +125,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+    .bold {
+        font-weight: bold;
     }
 </style>

@@ -1,6 +1,6 @@
 import { Socket } from "dgram";
 import { WebSocketServer } from "ws";
-import { BaseStatus, SetupStatus, StatusType } from "../schema";
+import { BaseStatus, SetupStatus, SmileStatus, StatusType } from "../schema";
 import { useState } from "../middleware/state";
 
 const map: Map<number, any> = new Map();
@@ -34,6 +34,11 @@ export const init = () => {
                             serial,
                             code
                         });
+                    else {
+                        if (sensor.latestStatus)
+                            sendSocketUpdate<SmileStatus>(uuid, StatusType.Smile, sensor.latestStatus);
+                    }
+                        
                 },
                 (err) => {
                     console.error('no such sensor');

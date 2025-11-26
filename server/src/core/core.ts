@@ -6,10 +6,12 @@ export const dataToSmile = (data: HistoryEntry, params: SensorParameters | null)
     const { t, d, tp } = data;
 
     const base: Partial<SmileStatus> = { type: StatusType.Smile, temp: tp, percentage: d }
-
+    const percentage = d / 1700;
     return {
         ...base,
-        percentage: d,
-        smile: Smile.Happy
+        smile: Smile.Sad,
+        days: params?.plant.wateringIntervalDays ?? 0,
+        amount: params?.plant.xWateringAvgVolumeRequirement.value ?? 0,
+        percentage
     } as SmileStatus
 }
