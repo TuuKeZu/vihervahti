@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { fetchApi } from '$lib/networking';
-    import { clearPairedSensor, pairedSensor, sensor } from '$lib/store';
+    import { clearPairedSensor, loading, pairedSensor, sensor } from '$lib/store';
     import type { Sensor } from '../../schema';
 
 
@@ -11,10 +11,12 @@
 
     $effect(() => {
         if ($sensor != null) return;
+        loading.set(true);
 
         fetchApi<Sensor>('GET', '/interface/get', { json: true, uuid: paired })
         .then(_sensor => {
             sensor.set(_sensor);
+            loading.set(false);
 
             if (!_sensor.params)
                 goto('/setup');
@@ -37,7 +39,7 @@
         </div>
         <div class="master">
             {#if !$sensor}
-                loading...
+
             {:else}
                 {@render children()}
             {/if}

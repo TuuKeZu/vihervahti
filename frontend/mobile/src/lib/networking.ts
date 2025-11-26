@@ -1,3 +1,5 @@
+import { loading } from "./store";
+
 export const API_URL = 'http://localhost:8008/api';
 const AUTH = 'ronja';
 
@@ -38,6 +40,7 @@ export const fetchApi = <T>(method: 'POST' | 'GET', url: string, options: Partia
 }
 
 export const dispatchCommand = (serial: string, fetch: Promise<string>): Promise<void> => {
+    loading.set(true);
     return new Promise((resolve, reject) => {
         fetch
         .then(async uuid => {
@@ -50,11 +53,13 @@ export const dispatchCommand = (serial: string, fetch: Promise<string>): Promise
                     console.log("loading...", loaded, loaded == false);
                     if (loaded == false) {
                         clearInterval(interval);
+                        loading.set(false);
                         return resolve();
                     }
                 })
                 .catch(err => {
                     clearInterval(interval);
+                    loading.set(false);
                     return reject(err);
                 })
             }, 1000);

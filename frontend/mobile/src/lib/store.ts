@@ -23,3 +23,5 @@ export const loadPairedSensor = () => {
 
 export const pairedSensor: Writable<string | null> = writable(null);
 export const sensor: Writable<Sensor | null> = writable(null);
+
+export const loading: Writable<boolean> = writable(false);

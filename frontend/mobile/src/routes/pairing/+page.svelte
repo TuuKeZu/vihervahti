@@ -3,23 +3,29 @@
     import { fetchApi } from "$lib/networking";
     import { onMount } from "svelte";
     import type { AvailableSensor } from "../../schema";
+    import { loading } from "$lib/store";
 
 
 
     let available: AvailableSensor[] = $state([]); 
     let selected: AvailableSensor | null = $state(null);
-    let loading: boolean = $state(true);
+    let _loading: boolean = $state(true);
 
     onMount(async () => {
         const list = await fetchApi<AvailableSensor[]>('GET', '/interface/sensors', { json: true });
         available = list;
-        loading = false;
+        _loading = false;
     });
 
     const nav = () => {
         if (!selected) return;
         goto(`/pairing/${selected.uuid}`)
     }
+
+    $effect(() => {
+        loading.set(_loading);
+        _loading;
+    })
 
 </script>
 
@@ -33,8 +39,8 @@
     </div>
 </div>
 <p class="small">Etsitään lähellä olevia vihervahteja...</p>
-{#if loading}
-    <p>Loading...</p>
+{#if _loading}
+    
 {:else}
     <li>
         {#each available as sensor}

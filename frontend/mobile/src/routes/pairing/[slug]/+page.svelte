@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { dispatchCommand, fetchApi } from '$lib/networking.js';
-    import { sensor, setPairedSensor } from '$lib/store.js';
+    import { loading, sensor, setPairedSensor } from '$lib/store.js';
     import SvelteOtp from '@k4ung/svelte-otp';
     import { json } from '@sveltejs/kit';
     import { onMount } from 'svelte';
@@ -33,9 +33,11 @@
     }
 
     $effect(() => {
+        loading.set(true);
         promise
         .then(_uuid => {
             uuid = _uuid;
+            loading.set(false);
         })
         .catch(_ => {
             goto('/app');

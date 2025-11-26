@@ -4,6 +4,7 @@
     import { onMount } from "svelte";
     import { PotSize, type InitSensorParameters, type Sensor, type SensorParameters } from "../../schema";
     import { pairedSensor, sensor } from "$lib/store";
+    import { fade } from "svelte/transition";
 
     const SIZES = {
         [PotSize.Small]: ['Pieni', '(alle litra)'],
@@ -93,7 +94,7 @@
                         <p>Suosittuja huonekasveja</p>
                     </div>
                     {#each listing as plant}
-                        <div class="elem plant">
+                        <div class="elem plant" transition:fade>
                             <div class="text">
                                 <h2>{plant.name}</h2>
                                 <p>{plant.latin}</p>

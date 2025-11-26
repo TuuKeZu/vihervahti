@@ -3,10 +3,12 @@ import { useAuth, useSensor, useState } from '../middleware/state';
 import { onError, StateError, toNull } from '../error';
 import Joi from 'joi';
 import { validateBody, validateParams } from '@tuukezu/joi-express';
-import { Sensor, SensorUpdateType } from '../schema';
+import { Sensor, SensorUpdateType, SetupStatus, Smile, SmileStatus, StatusType } from '../schema';
 
 import { v4 as uuidv4 } from 'uuid';
 import { fetchInfo, fetchPlantInfo } from '../plants/api';
+import { sendSocketUpdate } from '../socket/socket';
+import { dataToSmile } from '../core/core';
 
 
 const router = express.Router();
@@ -40,11 +42,18 @@ router.post('/initialize', (req, res) => {
             plant,
             potSize: parameters.pot
         } : null,
-        history
+        history,
+        latestStatus: null
     }   
 
     const result = state.insertSensor(sensor).mapErr(res, onError);
     if (!result) return;
+
+    sendSocketUpdate<SetupStatus>(sensor.uuid, StatusType.Setup, { 
+        serial,
+        code,
+    });
+
 
     res.status(200).send('Success');
 });
@@ -86,6 +95,17 @@ router.post('/history', (req, res) => {
         ...sensor,
         history: [...sensor.history, ...history]
     }));
+    
+    if (sensor.paired) {
+        const status = dataToSmile(history.at(-1), sensor.params);
+
+        state.updateSensor(sensor.uuid, (sensor) => ({
+            ...sensor,
+            latestStatus: status
+        }));
+
+        sendSocketUpdate(sensor.uuid, StatusType.Smile, status);
+    }
 
     res.status(200).send('Success');
 });
