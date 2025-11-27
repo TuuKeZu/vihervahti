@@ -52,7 +52,7 @@
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
 
-        background-image: url(img/TervetuloaHero.png);
+        background-image: url(/img/TervetuloaHero.png);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
