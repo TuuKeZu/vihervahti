@@ -22,6 +22,7 @@ const init = () => {
     const GOOD = document.getElementById('GOOD');
     const NEUTRAL = document.getElementById('NEUTRAL');
     const BAD = document.getElementById('BAD');
+    const PLACEHOLDER = document.getElementById('PLACEHOLDER');
     const STATUS_GOOD = document.getElementById('STATUS-GOOD');
     const STATUS_NEUTRAL = document.getElementById('STATUS-NEUTRAL');
     const STATUS_BAD = document.getElementById('STATUS-BAD');
@@ -39,6 +40,7 @@ const init = () => {
         console.log("Disconnected");
     };
     const onMessage = (data) => {
+        PLACEHOLDER.style.display = 'none';
         switch (data.type) {
             case StatusType.Setup:
                 return onSetup(data);

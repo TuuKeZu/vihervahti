@@ -49,6 +49,8 @@ const init = () => {
     const NEUTRAL = document.getElementById('NEUTRAL') as HTMLElement;
     const BAD = document.getElementById('BAD') as HTMLElement;
 
+    const PLACEHOLDER = document.getElementById('PLACEHOLDER') as HTMLElement;
+
     const STATUS_GOOD = document.getElementById('STATUS-GOOD') as HTMLElement;
     const STATUS_NEUTRAL = document.getElementById('STATUS-NEUTRAL') as HTMLElement;
     const STATUS_BAD = document.getElementById('STATUS-BAD') as HTMLElement;
@@ -72,6 +74,7 @@ const init = () => {
     }
 
     const onMessage = (data: SmileStatus | SetupStatus) => {
+        PLACEHOLDER.style.display = 'none';
         switch (data.type) {
             case StatusType.Setup:
                 return onSetup(data)

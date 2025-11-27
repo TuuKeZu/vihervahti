@@ -5,6 +5,7 @@
     import { PotSize, type InitSensorParameters, type Sensor, type SensorParameters } from "../../schema";
     import { pairedSensor, sensor } from "$lib/store";
     import { fade } from "svelte/transition";
+    import InfoBox from "../components/InfoBox.svelte";
 
     const SIZES = {
         [PotSize.Small]: ['Pieni', '(alle litra)'],
@@ -103,6 +104,15 @@
                         </div>
                     {/each}
                 </div>
+
+                <InfoBox>
+                    <p>Voit selvittää kasvin lajin:</p>
+                    <li class="list">
+                        <p>* Luontoportti.fi -palvelusta</p>
+                        <p>* Puhelimen AI-avustimella</p>
+                        <p>* Kasviruukun kyljestä</p>
+                    </li>
+                </InfoBox>
             {:else if _state == State.SelectRuukku}
                 <h1>Kuinka suuri ruukku kasvilla on?</h1>
 
@@ -117,6 +127,10 @@
                         </div>
                     {/each}
                 </div>
+
+                <InfoBox>
+                    <p>Ruukun pitää olla riittävän kokoinen, jotta kasvin juurilla on tilaa kasvaa. Liian suuri ruukku voi kuitenkin säilöä liikaa kosteutta.</p>
+                </InfoBox>
             {:else if _state == State.DisplayInfo}
                 <section>
                     <div class="sun">
@@ -127,7 +141,7 @@
 
                         <p>Hajavalo sopii parhaiten kasvillesi. Tämän jälkeen sinun tarvitsee vain noudattaa vihervahdin kasteluohjeita.</p>
 
-                        <button onclick={() => goto('/app')}>Ymmärrän</button>
+                        <button onclick={() => goto('/app')}>Mahtavaa</button>
                     </div>
 
                 </section>
