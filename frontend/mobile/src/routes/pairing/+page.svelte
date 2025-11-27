@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { fetchApi } from "$lib/networking";
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
     import { Smile, type AvailableSensor, type SmileStatus } from "../../schema";
     import { loading } from "$lib/store";
 
@@ -9,16 +9,15 @@
     let selected: AvailableSensor | null = $state(null);
     let _loading: boolean = $state(true);
 
+    const update = async () => {
+        const list = await fetchApi<AvailableSensor[]>('GET', `/interface/sensors?t=${(new Date()).getTime()}`, { json: true });
+        available = list;
+    }
+
     onMount(async () => {
         const list = await fetchApi<AvailableSensor[]>('GET', '/interface/sensors', { json: true });
         available = list;
         _loading = false;
-
-
-        setInterval(async () => {
-            const list = await fetchApi<AvailableSensor[]>('GET', `/interface/sensors?t=${(new Date()).getTime()}`, { json: true });
-            available = list;
-        }, 2000);
     });
 
     const nav = () => {
@@ -29,7 +28,16 @@
     $effect(() => {
         loading.set(_loading);
         _loading;
-    })
+    });
+
+    let clear: number;
+    onMount(() => {
+        clear = setInterval(update, 2000);
+    });
+
+    onDestroy(() => {
+        clearInterval(clear);
+    });
 
 </script>
 

@@ -2,25 +2,31 @@
     import { fade, fly } from 'svelte/transition';
     import { pairedSensor, sensor } from '../../lib/store';
     import { Smile, type SmileStatus } from '../../schema';
-    import { onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
     import { fetchApi } from '$lib/networking';
 
+    const update = async () => {
+        const status = await fetchApi<SmileStatus | null>('GET', '/interface/status', { uuid: $pairedSensor, json: true });
+        if (!status) return;
+        
+        sensor.update(sensor => {
+            if (!sensor) return null;
 
+            return {
+                ...sensor,
+                latestStatus: status
+            }
+        })
+    }
+
+    let clear: number;
     onMount(() => {
-        setInterval(async () => {
-            const status = await fetchApi<SmileStatus | null>('GET', '/interface/status', { uuid: $pairedSensor, json: true });
-            if (!status) return;
-            
-            sensor.update(sensor => {
-                if (!sensor) return null;
+        clear = setInterval(update, 2000);
+    });
 
-                return {
-                    ...sensor,
-                    latestStatus: status
-                }
-            })
-        }, 2000);
-    })
+    onDestroy(() => {
+        clearInterval(clear);
+    });
 </script>
 
 
