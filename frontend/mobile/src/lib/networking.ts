@@ -1,7 +1,7 @@
 import { loading } from "./store";
 
-export const API_URL = 'http://localhost:8008/api';
-// export const API_URL = 'https://vihervahti-api.rannasta-suomeen.fi/api';
+// export const API_URL = 'http://localhost:8008/api';
+export const API_URL = 'https://vihervahti-api.rannasta-suomeen.fi/api';
 const AUTH = 'ronja';
 
 export interface FetchOptions {
