@@ -1,6 +1,5 @@
 import time
 import os
-
 import board
 
 from adafruit_seesaw.seesaw import Seesaw
@@ -9,10 +8,9 @@ from adafruit_seesaw.seesaw import Seesaw
 def scan():
     devices = os.system("i2cdetect -y 1 | grep 36")
     if devices == 0:
-        return True
+       return SensorHardware()
     else:
-        print("no device on 0x36")
-        return False
+        return None
 
 class SensorHardware ():
     

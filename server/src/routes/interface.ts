@@ -45,6 +45,13 @@ router.get('/get', (req, res) => {
     res.json({ ...sensor, commandQueue: [] });
 });
 
+router.get('/status', (req, res) => {
+    const sensor = useAuthSensor(req, res).mapErr(res, onError);
+    if (!sensor) return;
+
+    res.json(sensor.latestStatus);
+});
+
 router.post('/unpair', (req, res) => {
     const sensor = useAuthSensor(req, res).mapErr(res, onError);
     if (!sensor) return;

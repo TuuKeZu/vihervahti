@@ -1,7 +1,6 @@
 import requests
 from _config import API_URL, UUID, CODE, SERIAL
 from networking.mod import DEFAULT_HEADERS, fetch
-from networking.errors import handle_error
 from commands.mod import handle_command
 from config.mod import load_config
 from core.fs import load_history

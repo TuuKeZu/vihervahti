@@ -2,6 +2,7 @@ from collections.abc import Callable
 from networking import commands
 from state import state
 from config.mod import save_config
+from core.fs import save_to_history
 
 
 def initialized(command: dict[str, str]):
@@ -17,6 +18,10 @@ def paired(command: dict[str, str]):
     owner = command['owner']
     state.owner = owner
     state.paired = True
+
+    entry = state.read_hardware()
+    commands.history(entry)
+    save_to_history(entry)
 
     commands.callback(uuid)
     print("> Device succesfully paired")

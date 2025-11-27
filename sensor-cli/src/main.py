@@ -14,18 +14,11 @@ def main():
     print("> starting")
     commands.initialize()
 
-    hardware = None
-
-    if gpio.scan():
-        hardware = gpio.SensorHardware()
+    state.hardware = gpio.scan()
 
     def thread_1():
         while True:
-            if (hardware):
-                core.onTick(hardware)
-            else:
-                # mock results if hardware decides to die
-                core.mockTick()
+            core.onTick()
             time.sleep(15)
 
     def thread_2():

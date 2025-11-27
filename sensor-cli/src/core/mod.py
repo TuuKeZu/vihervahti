@@ -3,12 +3,15 @@ from core.fs import save_to_history
 from core.gpio import SensorHardware
 from networking.commands import history
 import random
+from state import state
 
-def onTick(hardware: SensorHardware):
-    entry = hardware.read()
-
-    save_to_history(entry)
-    history(entry)
+def onTick():
+    if state.hardware:
+        entry = state.hardware.read()
+        save_to_history(entry)
+        history(entry)
+    else:
+        mockTick()
 
 def mockTick():
     entry = {
