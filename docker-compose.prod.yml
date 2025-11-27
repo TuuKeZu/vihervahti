@@ -8,3 +8,8 @@ services:
   mobile:
     image: ghcr.io/tuukezu/vihervahti:mobile-latest
     network_mode: host
+
+  cli:
+    image: ghcr.io/tuukezu/vihervahti:sensor-latest
+    ports:
+      - 8010:80
