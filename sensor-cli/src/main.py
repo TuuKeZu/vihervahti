@@ -26,7 +26,7 @@ def main():
             else:
                 # mock results if hardware decides to die
                 core.mockTick()
-            time.sleep(30)
+            time.sleep(15)
 
     def thread_2():
         while True:

@@ -89,7 +89,7 @@ main h1 {
     font-size: 1rem;
 }
 
-#SETUP img {
+.animate {
     margin-bottom: 5px;
 
     animation: linear;
@@ -113,6 +113,7 @@ main h1 {
     }
 }
 
+#PLACEHOLDER img,
 #SMILE img {
     filter: brightness(0) invert();
 
@@ -120,7 +121,7 @@ main h1 {
     aspect-ratio: 1/1;
 }
 
-#SMILE .bottom {
+.interface .bottom {
     height: 30%;
     width: 100%;
 
