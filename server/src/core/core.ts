@@ -9,7 +9,7 @@ const LIMITS: [Smile, number][] = [
 ]
 
 const determineSmile = (d: number): Smile => {
-    const [s, _] = LIMITS.find(([_, limit]) => limit <= d) as [Smile, number];
+    const [s, _] = LIMITS.find(([_, limit]) => d <= limit) as [Smile, number];
     return s
 }
 
