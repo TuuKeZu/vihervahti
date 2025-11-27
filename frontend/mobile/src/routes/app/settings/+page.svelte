@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { dispatchCommand, fetchApi } from "$lib/networking";
-    import { pairedSensor, sensor } from "$lib/store";
+    import { clearPairedSensor, pairedSensor, sensor, setPairedSensor } from "$lib/store";
 
 
 
@@ -13,6 +13,7 @@
         if (!$sensor) return;
 
         const b = await dispatchCommand($sensor.serial, fetchApi('POST', '/interface/unpair', { json: false, uuid: $pairedSensor }));
+        clearPairedSensor()
         goto('/');
     }
 

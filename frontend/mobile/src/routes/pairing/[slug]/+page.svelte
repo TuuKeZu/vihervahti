@@ -58,7 +58,7 @@
 
 
 {#if !uuid}
-    <p>Loading</p>
+    
 {:else}
     <h1>Yhdistä laitteeseen</h1>
     <p>{uuid}</p>

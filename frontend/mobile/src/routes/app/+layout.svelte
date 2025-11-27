@@ -4,12 +4,15 @@
     import { clearPairedSensor, loading, pairedSensor, sensor } from '$lib/store';
     import { onMount } from 'svelte';
     import type { Sensor } from '../../schema';
+    import { fade, fly } from 'svelte/transition';
 
     let path = $state(window.location.pathname);
     
     const { children } = $props();
     
     const paired = $pairedSensor;
+
+    let refresh;
     
     $effect(() => {
         if ($sensor != null) return;
@@ -39,6 +42,7 @@
         loading.set(false);
     })
 
+
 </script>
 
 
@@ -47,13 +51,15 @@
         <div class="header">
             
         </div>
-        <div class="master">
-            {#if !$sensor}
+        {#key refresh}
+            <div class="master" in:fade>
+                {#if !$sensor}
 
-            {:else}
-                {@render children()}
-            {/if}
-        </div>
+                {:else}
+                    {@render children()}
+                {/if}
+            </div>
+        {/key}
         <nav>
             <div class="inner">
                 <div class="icon" onclick={() => goto('/app')}>
@@ -151,10 +157,13 @@
         height: 25px;
         width: 25px;
         margin: 3px;
+
+        user-select: none;
     }
 
     .icon p {
         font-size: .9rem;
+        user-select: none;
     }
 
     .icon p.selected {
