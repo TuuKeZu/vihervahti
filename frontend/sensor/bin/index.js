@@ -10,7 +10,8 @@ var Smile;
     Smile["Neutral"] = "NEUTRAL";
     Smile["Happy"] = "HAPPY";
 })(Smile || (Smile = {}));
-const WS_URL = 'http://localhost:8009';
+// const WS_URL = 'http://localhost:8009';
+const WS_URL = 'https://vihervahti-ws.rannasta-suomeen.fi/api';
 const uuid = '1234-5';
 const init = () => {
     const SETUP = document.getElementById('SETUP');

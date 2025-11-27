@@ -30,7 +30,8 @@ enum Smile {
     Happy = 'HAPPY',
 }
 
-const WS_URL = 'http://localhost:8009';
+// const WS_URL = 'http://localhost:8009';
+const WS_URL = 'https://vihervahti-ws.rannasta-suomeen.fi/api';
 const uuid = '1234-5';
 
 
