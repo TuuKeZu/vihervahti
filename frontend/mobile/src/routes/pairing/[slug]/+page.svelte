@@ -38,7 +38,7 @@
             if (!_sensor.params)
                 return goto('/setup');
 
-            goto('/app');
+            goto('/setup');
         })
     }
 
